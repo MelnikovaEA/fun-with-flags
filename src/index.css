@@ -5,7 +5,11 @@
     box-sizing: border-box;
 }
 
-root {
+#root {
+    padding: 0;
+}
+
+:root {
     /*Typography*/
     --family: 'Nunito Sans', sans-serif;
     --fs-sm: 14px;
@@ -41,3 +45,4 @@ body {
     font-weight: var(--fw-light);
     background: var(--colors-bg);
 }
+

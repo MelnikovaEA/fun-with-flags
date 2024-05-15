@@ -28,7 +28,6 @@ const Title = styled.a.attrs({
 const ModeSwitcher = styled.div`
   color: var(--colors-text);
   font-size: var(--fs-sm);
-  //font-weight: var(--fw-bold);
   cursor: pointer;
   text-transform: capitalize;
 `;

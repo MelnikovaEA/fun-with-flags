@@ -1,8 +1,8 @@
 import {styled} from "styled-components";
 import {useState, useEffect} from "react";
-
-import {Container} from "./Container.tsx";
+import {Link} from "react-router-dom";
 import {IoMoon, IoMoonOutline} from "react-icons/io5";
+import {Container} from "./Container.tsx";
 
 const HeaderElem = styled.header`
   background-color: var(--colors-ui-base);
@@ -13,11 +13,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 `;
 
-const Title = styled.a.attrs({
-    href: '/'
+const Title = styled(Link).attrs({
+    to: '/'
 })`
   color: var(--colors-text);
   font-size: var(--fs-sm);

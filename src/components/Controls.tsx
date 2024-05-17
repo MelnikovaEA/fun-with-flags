@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Search from "./Search.tsx";
 import CustomSelect from "./CustomSelect.tsx";
@@ -15,17 +15,23 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
-  @media(min-width: 767px) {
+
+  @media (min-width: 767px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 `
 
-const Controls: React.FC = () => {
+const Controls: React.FC = ({onSearch}) => {
     const [search, setSearch] = useState('');
-    const [region, setRegion] = useState('')
+    const [region, setRegion] = useState('');
+
+    useEffect(() => {
+        console.log(region, search)
+        const regionValue = region?.value || '';
+        onSearch(search, regionValue);
+    }, [search, region]);
 
     return (
         <Wrapper>

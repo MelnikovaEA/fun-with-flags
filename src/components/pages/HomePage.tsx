@@ -18,7 +18,6 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     const {countries, setCountries} = useCountries();
-    console.log('Монтирование компонента', countries);
     const [filteredCountries, setFilteredCountries] = useState(countries);
 
     const handleSearch = (search, region) => {
@@ -31,20 +30,17 @@ const HomePage = () => {
         if (search) {
             data = data.filter(el => el.name.common.toLowerCase().includes(search.toLowerCase()))
         }
-        console.log('DATA:', data)
         setFilteredCountries(data);
     }
 
     useEffect(() => {
         if (!countries.length) {
-            console.log('Новый запрос!', countries.length)
             axios.get(ALL_COUNTRIES).then(({data}) => setCountries(data));
         }
     }, [countries]);
 
     useEffect(() => {
         setFilteredCountries(countries);
-        console.log('MASSIVE', filteredCountries);
     }, [countries]);
 
     return (
@@ -52,7 +48,6 @@ const HomePage = () => {
             <Controls onSearch={handleSearch}/>
             <List>
                 {filteredCountries.sort((a, b) => a.name.common.localeCompare(b.name.common)).map((country) => {
-                    console.log('New Country')
                     const countryInfo: Country = {
                         flag: country.flags.svg,
                         name: country.name.common,

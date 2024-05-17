@@ -28,7 +28,6 @@ const Controls: React.FC = ({onSearch}) => {
     const [region, setRegion] = useState('');
 
     useEffect(() => {
-        console.log(region, search)
         const regionValue = region?.value || '';
         onSearch(search, regionValue);
     }, [search, region]);

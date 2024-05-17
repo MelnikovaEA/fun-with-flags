@@ -107,7 +107,6 @@ const Info = (props) => {
 
     const currencyValues = Object.values(currencies);
     const languagesValues = Object.values(languages);
-    console.log(borders);
 
     const [neighbors, setNeighbors] = useState([]);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -21,7 +21,11 @@ const Wrapper = styled.section`
   }
 `
 
-const List: React.FC<any> = ({children}) => {
+interface ListProps {
+    children: ReactNode,
+}
+
+const List: React.FC<ListProps> = ({children}) => {
     return <Wrapper> {children} </Wrapper>
 };
 

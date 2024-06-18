@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import axios from "axios";
-import {useState, useEffect} from "react";
-import {filterByCode} from "../../../../config.ts";
+import {NavigateFunction} from "react-router-dom";
+import {Country} from "../../types";
+import {useNeighbors} from "./use-neighbours.ts";
 
 const Wrapper = styled.section`
   margin-top: 2rem;
@@ -90,7 +90,11 @@ const Tag = styled.span`
   cursor: pointer;
 `;
 
-const Info = (props) => {
+interface InfoValues extends Country {
+    navigate: NavigateFunction
+}
+
+const Info = (props: InfoValues) => {
     const {
         name,
         flags,
@@ -107,17 +111,11 @@ const Info = (props) => {
 
     const currencyValues = Object.values(currencies);
     const languagesValues = Object.values(languages);
-
-    const [neighbors, setNeighbors] = useState([]);
-
-    useEffect(() => {
-        axios.get(filterByCode(borders))
-            .then(({data}) => setNeighbors(data.map(c => c.name.common)))
-    }, [borders]);
+    const neighbors = useNeighbors(borders);
 
     return (
         <Wrapper>
-            <InfoImage src={flags.svg}/>
+            <InfoImage src={flags.svg} alt={name.common}/>
             <div>
                 <InfoTitle>{name.common}</InfoTitle>
                 <ListGroup>

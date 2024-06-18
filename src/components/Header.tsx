@@ -1,12 +1,13 @@
 import {styled} from "styled-components";
-import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
-import {IoMoon, IoMoonOutline} from "react-icons/io5";
+import {Link, LinkProps} from "react-router-dom";
 import {Container} from "./Container.tsx";
+import ModelSwitcher from "../features/theme/ModelSwitcher.tsx";
+import {useCleanup} from "../features/controls/use-cleanUp.ts";
 
 const HeaderElem = styled.header`
   background-color: var(--colors-ui-base);
   box-shadow: var(--shadow);
+  margin-top: 1rem;
 `;
 
 const Wrapper = styled.div`
@@ -16,45 +17,23 @@ const Wrapper = styled.div`
   padding: 1.5rem 0;
 `;
 
-const Title = styled(Link).attrs({
-    to: '/'
-})`
+const Title = styled(Link)<LinkProps>`
   color: var(--colors-text);
   font-size: var(--fs-sm);
   font-weight: bold;
   text-decoration: none;
 `;
 
-const ModeSwitcher = styled.div`
-  color: var(--colors-text);
-  font-size: var(--fs-sm);
-  cursor: pointer;
-  text-transform: capitalize;
-`;
-
 const Header = () => {
 
-    const [theme, setTheme] = useState('light');
-
-    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
-
-    useEffect(() => {
-        document.body.setAttribute('data-theme', theme)
-    }, [theme]);
+    const cleanUp = useCleanup();
 
     return (
         <HeaderElem>
             <Container>
                 <Wrapper>
-                    <Title>Where is the world?</Title>
-                    <ModeSwitcher onClick={toggleTheme}>
-                        {theme === 'light' ? (
-                            <IoMoonOutline size='14px'/>
-                        ) : (
-                            <IoMoon size='14px'/>
-                        )}
-                        <span style={{margin: '0.75rem'}}>{theme} Theme</span>
-                    </ModeSwitcher>
+                    <Title to="/" onClick={cleanUp}>Where is the world?</Title>
+                    <ModelSwitcher/>
                 </Wrapper>
             </Container>
         </HeaderElem>

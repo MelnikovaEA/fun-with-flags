@@ -1,4 +1,4 @@
-type Codes = string[];
+type Codes = string[];  
 
 const BASE_URL = 'https://restcountries.com/v3.1/';
 

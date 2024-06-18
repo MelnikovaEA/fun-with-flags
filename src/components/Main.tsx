@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import styled from "styled-components";
 import {Container} from "./Container.tsx";
 
@@ -10,7 +10,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const Main: React.FC<any> = ({children}) => {
+interface MainProps {
+    children: ReactNode,
+}
+
+const Main: React.FC<MainProps> = ({children}) => {
     return (
       <Wrapper >
           <Container>

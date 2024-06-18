@@ -1,5 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
+import {CountryInfo} from "../types";
 
 const Wrapper = styled.article`
   border-radius: var(--radius);
@@ -45,25 +45,22 @@ const CardListItem = styled.li`
   }
 `;
 
-type CardValues = {
-    flag: string,
-    name: string,
-    info: { title: string, description: string }[],
-    onClick: ()=>void
+interface CardValues extends CountryInfo {
+    onClick: () => void,
 }
 
-const Card: React.FC<CardValues> = ({flag, name, info, onClick}) => {
+const Card = ({flag, name, info = [], onClick}: CardValues) => {
     return (
         <Wrapper onClick={onClick}>
             <CardImage src={flag} alt={name}/>
             <CardInfo>
                 <CardTitle>{name}</CardTitle>
                 <CardList>
-                   {info.map((item)=>(
-                      <CardListItem key={item.title}>
-                           <b>{item.title}:</b> {item.description}
-                       </CardListItem>
-                   ))}
+                    {info.map((item) => (
+                        <CardListItem key={item.title}>
+                            <b>{item.title}:</b> {item.description}
+                        </CardListItem>
+                    ))}
                 </CardList>
             </CardInfo>
         </Wrapper>

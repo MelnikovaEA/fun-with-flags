@@ -1,7 +1,20 @@
 import styled from "styled-components";
-import Select from "react-select";
+import Select, {Props} from 'react-select';
+import {Regions} from "../../types";
 
-const CustomSelect = styled(Select).attrs({
+export type CountryOption = {
+    label: Regions,
+    value: Regions,
+} | '';
+
+function MySelect(props: Props<CountryOption, false>) {
+    return (
+        <Select {...props} />
+    );
+}
+
+
+const CustomSelect = styled(MySelect).attrs({
     styles: {
         control: (provided) => ({
             ...provided,
@@ -27,11 +40,11 @@ const CustomSelect = styled(Select).attrs({
   border: none;
   border-radius: var(--radius);
   font-family: var(--family);
-  
+
   & > * {
     box-shadow: var(--shadow);
   }
-  
+
   & * {
     color: var(--colors-text) !important;
   }
@@ -39,9 +52,9 @@ const CustomSelect = styled(Select).attrs({
   & input {
     padding-left: 0.25rem;
   }
-  
+
   & > div {
-    background: var(--colors-ui-base) ;
+    background: var(--colors-ui-base);
   }
 `
 

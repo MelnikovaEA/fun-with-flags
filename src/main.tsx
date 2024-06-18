@@ -1,12 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import App from './App.tsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import App from './App.tsx';
+import './index.css';
 import HomePage from "./components/pages/HomePage.tsx";
 import DetailsPage from "./components/pages/detailsPage/DetailsPage.tsx";
 import NotFoundPage from "./components/pages/NotFoundPage.tsx";
-import {CountryProvider} from "./components/contexts/CountriesContext.tsx";
+import {store} from "./store.ts";
 
 const router = createBrowserRouter([
     {
@@ -29,10 +30,10 @@ const router = createBrowserRouter([
     }
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    // <React.StrictMode>
-        <CountryProvider>
+ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
+    <React.StrictMode>
+        <Provider store={store}>
             <RouterProvider router={router}/>
-        </CountryProvider>
-    // </React.StrictMode>,
+        </Provider>
+    </React.StrictMode>,
 )

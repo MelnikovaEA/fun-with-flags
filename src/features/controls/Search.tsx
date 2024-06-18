@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-
 import {IoSearchSharp} from "react-icons/io5";
+import { useSearch } from './use-search.ts';
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -37,16 +36,13 @@ const SearchIcon = styled(IoSearchSharp)`
   z-index: 99;
 `;
 
-type SearchValues = {
-    search: string,
-    setSearch: (value: string) => void
-}
+const Search = () => {
+    const [search, handleSearch] = useSearch();
 
-const Search: React.FC<SearchValues> = ({search, setSearch}) => {
     return (
         <InputContainer>
             <SearchIcon size='14px'/>
-            <Input onChange={(e)=>setSearch(e.target.value)} value={search}/>
+            <Input onChange={handleSearch} value={search} />
         </InputContainer>
     );
 };
